@@ -16,8 +16,11 @@ public class AlbumsController : ControllerBase
     [HttpGet(Name = "GetAlbums")]
     public async Task<IActionResult> Get()
     {
-        // now, the test 2nd test will work
-        var albums = _albumService.GetAllAlbums();
-        return Ok("all good");
+        var albums = await _albumService.GetAllAlbums();
+        if (albums is null || albums.Count == 0)
+        {
+            return NotFound();
+        }
+        return Ok(albums);
     }
 }
