@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Metallify.API.Services;
 using Metallify.API.Models;
+using Metallify.Tests.Fixtures;
 
 namespace Metallify.Tests.Systems.Controllers;
 
@@ -16,15 +17,7 @@ public class TestAlbumsController
         var mock = new Mock<IAlbumService>();
         mock
             .Setup(s => s.GetAllAlbums())
-            .ReturnsAsync(new List<Album>()
-            {
-                new()
-                {
-                    Id = 1,
-                    Title = "Animals",
-                    Genre = new () { Name = "Progressive Rock", Description = "Amazing!"}
-                }
-            });
+            .ReturnsAsync(AlbumsFixture.GetAlbumsForTests());
         var c = new AlbumsController(mock.Object);
         var result = await c.Get() as OkObjectResult;
         result.StatusCode.Should().Be(200);
@@ -38,7 +31,7 @@ public class TestAlbumsController
         var mock = new Mock<IAlbumService>();
         mock
             .Setup(s => s.GetAllAlbums())
-            .ReturnsAsync(new List<Album>());
+            .ReturnsAsync(AlbumsFixture.GetAlbumsForTests());
         var c = new AlbumsController(mock.Object);
         // Act
         var result = await c.Get();
@@ -53,15 +46,7 @@ public class TestAlbumsController
         var mock = new Mock<IAlbumService>();
         mock
             .Setup(s => s.GetAllAlbums())
-            .ReturnsAsync(new List<Album>()
-            {
-                new()
-                {
-                    Id = 1,
-                    Title = "Animals",
-                    Genre = new () { Name = "Progressive Rock", Description = "Amazing!"}
-                }
-            });
+            .ReturnsAsync(AlbumsFixture.GetAlbumsForTests());
 
         var c = new AlbumsController(mock.Object);
 
