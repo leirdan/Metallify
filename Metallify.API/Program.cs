@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IAlbumService, AlbumService>();
+builder.Services.AddHttpClient<IAlbumService, AlbumService>();
 
 var app = builder.Build();
 
