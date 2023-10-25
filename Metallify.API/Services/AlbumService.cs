@@ -12,6 +12,11 @@ public class AlbumService : IAlbumService
     public async Task<List<Album>> GetAllAlbums()
     {
         var res = await _httpClient.GetAsync("https://github.com/leirdan");
-        return new List<Album>();
+        if (res.StatusCode == System.Net.HttpStatusCode.NotFound)
+        {
+            return new List<Album>();
+        }
+        var list = await res.Content.ReadFromJsonAsync<List<Album>>();
+        return list.ToList();
     }
 }
