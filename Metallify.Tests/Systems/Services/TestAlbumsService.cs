@@ -63,4 +63,20 @@ public class TestAlbumsService
         // Assert
         result.Count.Should().Be(expected.Count);
     }
+
+    [Fact]
+    public async Task GetAllAlbums_WhenCalled_InvokeExternalURL()
+    {
+        // Arrange
+        var expected = AlbumsFixture.GetAlbumsForTests();
+        var mock = MockHttpMessageHandler<Album>.SetupGetResourceList(expected);
+        var h = new HttpClient(mock.Object);
+        var service = new AlbumService(h);
+
+        // Act
+        var result = await service.GetAllAlbums();
+
+        // Assert
+        result.Count.Should().Be(expected.Count);
+    }
 }
