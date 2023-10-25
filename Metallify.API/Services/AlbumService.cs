@@ -4,9 +4,14 @@ namespace Metallify.API.Services;
 
 public class AlbumService : IAlbumService
 {
-    public AlbumService() { }
-    public Task<List<Album>> GetAllAlbums()
+    private readonly HttpClient _httpClient;
+    public AlbumService(HttpClient h)
     {
-        return null;
+        _httpClient = h;
+    }
+    public async Task<List<Album>> GetAllAlbums()
+    {
+        var res = await _httpClient.GetAsync("https://github.com/leirdan");
+        return new List<Album>();
     }
 }
