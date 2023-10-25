@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metallify.Tests", "Metallify.Tests\Metallify.Tests.csproj", "{2B58D716-B898-4129-964E-33FD938150E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metallify.API", "Metallify.API\Metallify.API.csproj", "{7EA24EED-9CA4-4CD8-BCE6-FE9681BBAFF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metallify.Web", "Metallify.Web\Metallify.Web.csproj", "{1AA8E86C-F4C2-465E-9E5E-78397F1538F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B58D716-B898-4129-964E-33FD938150E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B58D716-B898-4129-964E-33FD938150E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B58D716-B898-4129-964E-33FD938150E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B58D716-B898-4129-964E-33FD938150E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EA24EED-9CA4-4CD8-BCE6-FE9681BBAFF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EA24EED-9CA4-4CD8-BCE6-FE9681BBAFF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EA24EED-9CA4-4CD8-BCE6-FE9681BBAFF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EA24EED-9CA4-4CD8-BCE6-FE9681BBAFF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA8E86C-F4C2-465E-9E5E-78397F1538F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA8E86C-F4C2-465E-9E5E-78397F1538F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA8E86C-F4C2-465E-9E5E-78397F1538F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA8E86C-F4C2-465E-9E5E-78397F1538F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
