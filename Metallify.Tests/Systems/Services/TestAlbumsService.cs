@@ -1,4 +1,5 @@
-﻿using Metallify.API.Models;
+﻿using FluentAssertions;
+using Metallify.API.Models;
 using Metallify.API.Services;
 using Metallify.Tests.Fixtures;
 using Metallify.Tests.Utils;
@@ -14,7 +15,7 @@ public class TestAlbumsService
     {
         // Arrange -> this section "verifies" if the http request returns a expected data
         var expected = AlbumsFixture.GetAlbumsForTests();
-        var mock = MockHttpMessageHandler<Album>.Setup(expected);
+        var mock = MockHttpMessageHandler<Album>.SetupGetResourceList(expected);
         var h = new HttpClient(mock.Object);
         var service = new AlbumService(h);
 
@@ -30,5 +31,36 @@ public class TestAlbumsService
                 ItExpr.Is<HttpRequestMessage>(req => req.Method == HttpMethod.Get),
                 ItExpr.IsAny<CancellationToken>()
             );
+    }
+
+    [Fact]
+    public async Task GetAllAlbums_WhenCalled_ReturnsEmptyListOfAlbums()
+    {
+        // Arrange
+        var mock = MockHttpMessageHandler<Album>.SetupReturn404();
+        var h = new HttpClient(mock.Object);
+        var service = new AlbumService(h);
+        
+        // Act
+        var result = await service.GetAllAlbums();
+
+        // Assert
+        result.Count.Should().Be(0);
+    }
+
+    [Fact]
+    public async Task GetAllAlbums_WhenCalled_ReturnsListOfAlbumsOfExpectedSize()
+    {
+        // Arrange
+        var expected = AlbumsFixture.GetAlbumsForTests();
+        var mock = MockHttpMessageHandler<Album>.SetupGetResourceList(expected);
+        var h = new HttpClient(mock.Object);
+        var service = new AlbumService(h);
+
+        // Act
+        var result = await service.GetAllAlbums();
+
+        // Assert
+        result.Count.Should().Be(expected.Count);
     }
 }
