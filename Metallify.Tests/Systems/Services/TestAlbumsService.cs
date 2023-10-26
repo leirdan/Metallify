@@ -12,14 +12,14 @@ namespace Metallify.Tests.Systems.Services;
 
 public class TestAlbumsService
 {
+    private readonly string _endpoint = "https://example.com/albums";
     [Fact]
     public async Task GetAllAlbums_WhenCalled_InvokesHTTPGetRequest()
     {
         // Arrange -> this section "verifies" if the http request returns a expected data
-        var endpoint = "https://example.com/albums";
         var config = Options.Create(new AlbumAPIOptions
         {
-            Endpoint = endpoint
+            Endpoint = _endpoint
         });
         var expected = AlbumsFixture.GetAlbumsForTests();
         var mock = MockHttpMessageHandler<Album>.SetupGetResourceList(expected);
@@ -44,10 +44,9 @@ public class TestAlbumsService
     public async Task GetAllAlbums_WhenCalled_ReturnsEmptyListOfAlbums()
     {
         // Arrange
-        var endpoint = "https://example.com/albums";
         var config = Options.Create(new AlbumAPIOptions
         {
-            Endpoint = endpoint
+            Endpoint = _endpoint
         });
         var mock = MockHttpMessageHandler<Album>.SetupReturn404();
         var h = new HttpClient(mock.Object);
@@ -64,10 +63,9 @@ public class TestAlbumsService
     public async Task GetAllAlbums_WhenCalled_ReturnsListOfAlbumsOfExpectedSize()
     {
         // Arrange
-        var endpoint = "https://example.com/albums";
         var config = Options.Create(new AlbumAPIOptions
         {
-            Endpoint = endpoint
+            Endpoint = _endpoint
         });
         var expected = AlbumsFixture.GetAlbumsForTests();
         var mock = MockHttpMessageHandler<Album>.SetupGetResourceList(expected);
@@ -85,20 +83,19 @@ public class TestAlbumsService
     public async Task GetAllAlbums_WhenCalled_InvokeExternalURL()
     {
         // Arrange
-        var endpoint = "https://example.com/albums";
         var config = Options.Create(new AlbumAPIOptions
         {
-            Endpoint = endpoint
+            Endpoint = _endpoint
         });
         var expected = AlbumsFixture.GetAlbumsForTests();
-        var mock = MockHttpMessageHandler<Album>.SetupGetResourceList(expected, endpoint);
+        var mock = MockHttpMessageHandler<Album>.SetupGetResourceList(expected, _endpoint);
         var h = new HttpClient(mock.Object);
         
         var service = new AlbumService(h, config);
 
         // Act
         var result = await service.GetAllAlbums();
-        var uri = new Uri(endpoint);
+        var uri = new Uri(_endpoint);
 
         // Assert
         mock
