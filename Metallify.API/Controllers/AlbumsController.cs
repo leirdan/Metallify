@@ -28,6 +28,10 @@ public class AlbumsController : ControllerBase
     public async Task<IActionResult> GetOne()
     {
         var album = await _albumService.GetSingleAlbum();
+        if (album is null || album.Id == 0)
+        {
+            return NotFound();
+        }
         return Ok(album);
     }
 }

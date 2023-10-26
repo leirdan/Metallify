@@ -90,14 +90,33 @@ public class TestAlbumsController
         var mock = new Mock<IAlbumService>();
         mock
             .Setup(s => s.GetSingleAlbum())
-            .ReturnsAsync(new Album());
+            .ReturnsAsync(AlbumsFixture.GetAlbumsForTests().First());
 
+        var c = new AlbumsController(mock.Object);
+
+        // Act
+        var res = await c.GetOne();
+        var obj = res as ObjectResult;
+
+        // Assert
+        res.Should().BeOfType<OkObjectResult>();
+        obj.Value.Should().BeOfType<Album>();
+    }
+
+    [Fact]
+    public async void Get_OnNoAlbumFound_ReturnsStatusCode404()
+    {
+        // Arrange
+        var mock = new Mock<IAlbumService>();
+        mock
+            .Setup(s => s.GetSingleAlbum())
+            .ReturnsAsync(new Album());
         var c = new AlbumsController(mock.Object);
 
         // Act
         var res = await c.GetOne();
 
         // Assert
-        res.Should().BeOfType<Album>();
+        res.Should().BeOfType<NotFoundResult>();
     }
 }
