@@ -1,17 +1,22 @@
-﻿using Metallify.API.Models;
+﻿using Metallify.API.Config;
+using Metallify.API.Models;
+using Microsoft.Extensions.Options;
 
 namespace Metallify.API.Services;
 
 public class AlbumService : IAlbumService
 {
     private readonly HttpClient _httpClient;
-    public AlbumService(HttpClient h)
+    private readonly AlbumAPIOptions _apiConfig;
+
+    public AlbumService(HttpClient h, IOptions<AlbumAPIOptions> apiConfig)
     {
         _httpClient = h;
+        _apiConfig = apiConfig.Value;
     }
     public async Task<List<Album>> GetAllAlbums()
     {
-        var res = await _httpClient.GetAsync("https://github.com/leirdan");
+        var res = await _httpClient.GetAsync(_apiConfig.Endpoint);
         if (res.StatusCode == System.Net.HttpStatusCode.NotFound)
         {
             return new List<Album>();
