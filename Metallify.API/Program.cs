@@ -1,3 +1,4 @@
+using Metallify.API.Config;
 using Metallify.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IAlbumService, AlbumService>();
 builder.Services.AddHttpClient<IAlbumService, AlbumService>();
+builder.Services.Configure<AlbumAPIOptions>(builder.Configuration.GetSection("AlbumAPIOptions"));
 
 var app = builder.Build();
 
