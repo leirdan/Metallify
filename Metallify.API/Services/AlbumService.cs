@@ -24,4 +24,15 @@ public class AlbumService : IAlbumService
         var list = await res.Content.ReadFromJsonAsync<List<Album>>();
         return list.ToList();
     }
+
+    public async Task<Album> GetSingleAlbum()
+    {
+        var album = new Album()
+        {
+            Id = 1,
+            Title = "Litourgya",
+            Genre = { Name = "Atmospheric Black Metal", Description = "The best of BM is here." }
+        };
+        return album;
+    }
 }

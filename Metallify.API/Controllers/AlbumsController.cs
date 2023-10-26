@@ -23,4 +23,11 @@ public class AlbumsController : ControllerBase
         }
         return Ok(albums);
     }
+
+    [HttpGet(Name = "GetAlbum")]
+    public async Task<IActionResult> GetOne()
+    {
+        var album = await _albumService.GetSingleAlbum();
+        return Ok(album);
+    }
 }
