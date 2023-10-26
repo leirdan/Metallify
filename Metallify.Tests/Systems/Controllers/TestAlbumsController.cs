@@ -11,20 +11,23 @@ namespace Metallify.Tests.Systems.Controllers;
 public class TestAlbumsController
 {
     [Fact]
-    // this one is okay
     public async void Get_OnSuccess_ReturnsStatusCode200()
     {
+        // Arrange
         var mock = new Mock<IAlbumService>();
         mock
             .Setup(s => s.GetAllAlbums())
             .ReturnsAsync(AlbumsFixture.GetAlbumsForTests());
         var c = new AlbumsController(mock.Object);
+
+        // Act
         var result = await c.Get() as OkObjectResult;
+
+        // Assert
         result.StatusCode.Should().Be(200);
     }
 
     [Fact]
-    // now this one works: it's on "green" phase on "red/green/refactor"
     public async void Get_OnSuccess_InvokeAlbumServiceExactlyOnce()
     {
         // Arrange
@@ -33,8 +36,10 @@ public class TestAlbumsController
             .Setup(s => s.GetAllAlbums())
             .ReturnsAsync(AlbumsFixture.GetAlbumsForTests());
         var c = new AlbumsController(mock.Object);
+
         // Act
         var result = await c.Get();
+
         // Assert
         mock.Verify(s => s.GetAllAlbums(), Times.Once());
     }
@@ -76,5 +81,23 @@ public class TestAlbumsController
 
         // Assert
         result.Should().BeOfType<NotFoundResult>();
+    }
+
+    [Fact]
+    public async void Get_OnSuccess_ReturnesASingleAlbum()
+    {
+        // Arrange
+        var mock = new Mock<IAlbumService>();
+        mock
+            .Setup(s => s.GetSingleAlbum())
+            .ReturnsAsync(new Album());
+
+        var c = new AlbumsController(mock.Object);
+
+        // Act
+        var res = await c.GetOne();
+
+        // Assert
+        res.Should().BeOfType<Album>();
     }
 }
