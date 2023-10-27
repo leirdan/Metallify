@@ -4,7 +4,6 @@
       "id": 1,
       "Title": "TRAUMA",
       "Genre": {
-        "id": 1,
         "Name": "Post-hardcore",
         "Description": "Awesome Genre!"
       }
@@ -13,7 +12,6 @@
       "id": 2,
       "Title": "Ghost Like You",
       "Genre": {
-        "id": 1,
         "Name": "Post-hardcore",
         "Description": "Awesome Genre!"
       }
@@ -22,7 +20,6 @@
       "id": 3,
       "Title": "I Loved You At Your Darkest",
       "Genre": {
-        "id": 2,
         "Name": "Brutal blackened death metal",
         "Description": "Best of both worlds."
       }

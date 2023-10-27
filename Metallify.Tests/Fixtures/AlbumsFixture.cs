@@ -11,8 +11,8 @@ internal static class AlbumsFixture
 {
     public static List<Album> GetAlbumsForTests() => new()
     {
-        new() { Id = 1, Title = "Refugium", Genre = new(){ Name = "Atmospheric Black Metal", Description = "Best BM's genre." } },
-        new() { Id = 2, Title = "MAY LONELINESS CONSUME YOU", Genre = new(){ Name = "Black Noise", Description = "Experimental but always good." } },
-        new() { Id = 3, Title = "Pale Swordsman", Genre = new(){ Name = "Romantic Black Metal", Description = "A new creative genre." } },
+        new() { Id = 1, Title = "TRAUMA", Genre = new(){ Name = "Post-hardcore", Description = "Awesome Genre!" } },
+        new() { Id = 2, Title = "Ghost Like You", Genre = new(){ Name = "Post-hardcore", Description = "Awesome Genre!" } },
+        new() { Id = 3, Title = "I Loved You At Your Darkest", Genre = new(){ Name = "Brutal blackened death metal", Description = "Best of both worlds." } },
     };
 }
